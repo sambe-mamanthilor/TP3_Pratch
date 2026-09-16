@@ -1,0 +1,38 @@
+---
+import { Tabs, TabsList, TabsTab, TabsPanel } from "accessible-astro-components";
+import GraphicSpecies from "../components/GraphicSpecies.astro";
+---
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>TP3 - Onglets Accessibles</title>
+  </head>
+  <body class="p-8">
+    <h1 class="text-2xl font-bold mb-6">Graphiques par Onglets (Accessible Astro)</h1>
+
+    <Tabs>
+      <TabsList>
+        <TabsTab id="tab-adelie" control="panel-adelie" selected class="px-4 py-2 border-b-2 aria-selected:border-blue-600 aria-selected:!font-bold">
+          Adelie
+        </TabsTab>
+        <TabsTab id="tab-gentoo" control="panel-gentoo" class="px-4 py-2 border-b-2 aria-selected:border-blue-600 aria-selected:!font-bold">
+          Gentoo
+        </TabsTab>
+        <TabsTab id="tab-chinstrap" control="panel-chinstrap" class="px-4 py-2 border-b-2 aria-selected:border-blue-600 aria-selected:!font-bold">
+          Chinstrap
+        </TabsTab>
+      </TabsList>
+
+      <TabsPanel id="panel-adelie" labelledby="tab-adelie" selected class="p-4 border rounded-b-md">
+        <GraphicSpecies species="Adelie" />
+      </TabsPanel>
+      <TabsPanel id="panel-gentoo" labelledby="tab-gentoo" class="p-4 border rounded-b-md">
+        <GraphicSpecies species="Gentoo" />
+      </TabsPanel>
+      <TabsPanel id="panel-chinstrap" labelledby="tab-chinstrap" class="p-4 border rounded-b-md">
+        <GraphicSpecies species="Chinstrap" />
+      </TabsPanel>
+    </Tabs>
+  </body>
+</html>
