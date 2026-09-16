@@ -1,21 +1,44 @@
 ---
-import PlotFigure from "../components/PlotFigure.astro";
-import Layout from "../layouts/Layout.astro";
-import * as Plot from "@observablehq/plot";
-import penguins from "../assets/penguins.json";
+import GraphicSpecies from "../components/GraphicSpecies.astro";
 ---
 
-<Layout>
-  <h1 class="text-2xl">Test Astro et Plot (Observablehq)</h1>
-  <PlotFigure
-    options={{
-      marks: [
-        Plot.dot(penguins, {
-          x: "culmen_length_mm",
-          y: "culmen_depth_mm",
-          stroke: "species",
-        }),
-      ],
-    }}
-  />
-</Layout>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>TP3 - Slider et Ancres avec Select</title>
+  </head>
+  <body class="p-8">
+    <header class="sticky top-0 bg-white p-4 shadow-md z-10 mb-6">
+      <label for="species-anchor" class="mr-2 font-medium">Naviguer vers l'espèce :</label>
+      <select id="species-anchor" class="p-2 border rounded border-gray-300">
+        <option value="adelie">Adelie</option>
+        <option value="gentoo">Gentoo</option>
+        <option value="chinstrap">Chinstrap</option>
+      </select>
+    </header>
+
+    <main class="flex overflow-x-auto snap-x snap-mandatory gap-8 pb-8">
+      <section id="adelie" class="item min-w-full snap-center bg-gray-50 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4">Adelie</h2>
+        <GraphicSpecies species="Adelie" />
+      </section>
+
+      <section id="gentoo" class="item min-w-full snap-center bg-gray-50 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4">Gentoo</h2>
+        <GraphicSpecies species="Gentoo" />
+      </section>
+
+      <section id="chinstrap" class="item min-w-full snap-center bg-gray-50 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4">Chinstrap</h2>
+        <GraphicSpecies species="Chinstrap" />
+      </section>
+    </main>
+
+    <script>
+      document.querySelector("#species-anchor")?.addEventListener("change", (evt) => {
+        const value = (evt.target as HTMLSelectElement).value;
+        location.hash = "#" + value;
+      });
+    </script>
+  </body>
+</html>
