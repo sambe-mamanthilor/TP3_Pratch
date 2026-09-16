@@ -17,18 +17,19 @@ import GraphicSpecies from "../components/GraphicSpecies.astro";
       </select>
     </header>
 
-    <main class="flex overflow-x-auto snap-x snap-mandatory gap-8 pb-8">
-      <section id="adelie" class="item min-w-full snap-center bg-gray-50 p-6 rounded-lg">
+    <!-- Slider horizontal CSS -->
+    <main class="slider flex overflow-x-auto snap-x snap-mandatory gap-8 pb-8">
+      <section id="adelie" class="item min-w-full snap-center bg-gray-50 p-6 rounded-lg shrink-0">
         <h2 class="text-xl font-bold mb-4">Adelie</h2>
         <GraphicSpecies species="Adelie" />
       </section>
 
-      <section id="gentoo" class="item min-w-full snap-center bg-gray-50 p-6 rounded-lg">
+      <section id="gentoo" class="item min-w-full snap-center bg-gray-50 p-6 rounded-lg shrink-0">
         <h2 class="text-xl font-bold mb-4">Gentoo</h2>
         <GraphicSpecies species="Gentoo" />
       </section>
 
-      <section id="chinstrap" class="item min-w-full snap-center bg-gray-50 p-6 rounded-lg">
+      <section id="chinstrap" class="item min-w-full snap-center bg-gray-50 p-6 rounded-lg shrink-0">
         <h2 class="text-xl font-bold mb-4">Chinstrap</h2>
         <GraphicSpecies species="Chinstrap" />
       </section>
@@ -40,5 +41,18 @@ import GraphicSpecies from "../components/GraphicSpecies.astro";
         location.hash = "#" + value;
       });
     </script>
+
+    <style>
+      .slider {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+      }
+      .item {
+        flex: 0 0 100%;
+        scroll-snap-align: center;
+      }
+    </style>
   </body>
 </html>
